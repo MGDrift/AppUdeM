@@ -17,6 +17,24 @@ const getUsuarios = (request, response) => {
 app.route("/usuarios")
 .get(getUsuarios);
 
+const getUsuario = (request, response) => {
+    const cedula = request.params.cedula;
+    connection.query("SELECT * FROM usuarios WHERE cedula = ?",
+    [cedula],
+    (err, results) => {
+        if(err)
+            throw err;
+        if (results.length > 0) {
+            response.status(200).json({ mensaje: "", data: results });
+        } else {
+            response.status(404).json({ mensaje: "El usuario no existe" })
+        }
+    });
+};
+
+//ruta
+app.route("/usuarios/:cedula")
+.get(getUsuario);
 
 const postUsuario = (request, response) => {
     const {cedula, nombre, apellido, ramaInstitucional} = request.body;

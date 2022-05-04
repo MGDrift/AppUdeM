@@ -1,21 +1,43 @@
-function home() {
-    let nombreA = document.querySelector('#nombreA')
-    console.log(window.nombre)
-    if (window.nombre !== null || window.nombre !== "" || window.nombre !== undefined) {
-        nombreA.innerHTML = `<span class="navbar-text">${window.nombre}</span>`
-    } else {
-        nombreA.innerHTML = `<span class="navbar-text">Ingresa tu cédula</span>`
+let queryString = window.location.search;
+let urlParams = new URLSearchParams(queryString);
+let cedula = urlParams.get('cedula');
+
+window.addEventListener('load', function() {
+    if (cedula) {
+        let nombreP = document.querySelector('#nombreP')
+        fetch(`http://localhost:3300/usuarios/${cedula}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.data)
+                nombreP.innerHTML = `${data.data[0].nombre} ${data.data[0].apellido}`
+            });
     }
-    window.location.href = '/'
+});
+
+function home() {
+    let url = '/'
+    if (cedula)
+        url = `${url}?cedula=${cedula}`
+    window.location.href = url
 }
 
 function iniciar() {
-    let nombreA = document.querySelector('#nombreA')
-    console.log(window.nombre)
-    if (window.nombre !== null || window.nombre !== "" || window.nombre !== undefined) {
-        nombreA.innerHTML = `<span class="navbar-text">${window.nombre}</span>`
-    } else {
-        nombreA.innerHTML = `<span class="navbar-text">Ingresa tu cédula</span>`
-    }
-    window.location.href = '/iniciar.html'
+    let url = '/iniciar.html'
+    if (cedula)
+        url = `${url}?cedula=${cedula}`
+    window.location.href = url
+}
+
+function misEventos() {
+    let url = '/miseventos.html'
+    if (cedula)
+        url = `${url}?cedula=${cedula}`
+    window.location.href = url
+}
+
+function crearEvento() {
+    let url = '/crearevento.html'
+    if (cedula)
+        url = `${url}?cedula=${cedula}`
+    window.location.href = url
 }

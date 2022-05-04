@@ -29,22 +29,35 @@
     </div>
   </nav>
   <div class="container mt-4">
-    <div class="card">
-      <div class="card-body">
-        <h2>Ingresa tu información:</h2>
-        <form id="crearUsuarioForm">
-          <div class="form-group">
-            <label for="cedula">Cedula</label>
-            <input type="number" class="form-control col-lg-6" id="cedula" placeholder="Cedula" name="cedula">
-          </div>
+      <div class="card">
+        <div class="card-body">
+          <h2>Ingresa la información del evento:</h2>
+          <form id="crearEventoForm">
+            <div class="form-group">
+              <label for="titulo">Titulo</label>
+              <input type="text" class="form-control col-lg-9" id="titulo" placeholder="Titulo" name="titulo">
+            </div>
+            <div class="form-group">
+              <label for="fecha">Fecha</label>
+              <input type="datetime-local" class="form-control col-lg-9" id="fecha" placeholder="Fecha" name="fecha">
+            </div>
+            <div class="form-group">
+              <label for="lugar">Lugar</label>
+              <input type="text" class="form-control col-lg-9" id="lugar" placeholder="Lugar" name="lugar">
+            </div>        
+            <div class="form-group">
+              <label for="descripcion">Descripcion</label>
+              <input type="text" class="form-control col-lg-9" id="descripcion" placeholder="Descripcion" name="descripcion">
+            </div>
+            <br/>
+            <button type="button" class="btn btn-primary" id="bSubmit">Enviar</button>
+          </form>
           <br/>
-          <button type="button" class="btn btn-primary" id="bSubmit">Ingresar</button>
-          <button type="button" class="btn btn-secondary" id="bRegistrar">Registrar</button>
-        </form>
-        <br/>
-        <div id="mensaje"></div>
+          <div id="mensaje"></div>
+    </div>
   </div>
-  <script src="./scripts/iniciar.js"></script>
+
+  <script src="./scripts/crearevento.js"></script>
   <script src="./scripts/navbar.js"></script>
 </body>
 </html>

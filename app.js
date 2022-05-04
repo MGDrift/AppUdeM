@@ -13,6 +13,7 @@ app.get('/', function(req, res) {
 
 //cargamos el archivo de rutas
 app.use(require('./rutas/usuarios.js'));
+app.use(require('./rutas/eventos.js'));
 
 app.listen(3300, () => {
     console.log("Servidor corriendo en el puerto 3300");
