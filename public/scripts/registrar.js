@@ -27,7 +27,6 @@ bSubmit.addEventListener('click', () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             const mensaje = document.querySelector('#mensaje')
             mensaje.innerHTML = `<p>${data.mensaje}</p>`
         })

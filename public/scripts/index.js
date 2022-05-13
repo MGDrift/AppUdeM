@@ -6,14 +6,27 @@ window.addEventListener('load', function() {
         .then(response => response.json())
         .then(data => {
             if (data.length > 0) {
-                data.forEach(function(evento) {
-                    let fecha = moment(evento.fecha).format("DD/MM/YYYY HH:mm")
-                    eventosList = `
-                        ${eventosList}
-                        <li class="d-grid gap-2">
-                            <button type="button" class="btn btn-outline-danger btn-lg">${evento.titulo} - ${fecha}</button>
-                        </li>
-                    `
+                let fechaActual = moment()
+                data.filter((evento) => moment(evento.fecha).month() == fechaActual.month())
+                .forEach(function(evento) {
+                    let fechaEvento = moment(evento.fecha)
+                    let fechaEventoFormateada = fechaEvento.format("DD/MM/YYYY HH:mm")
+                    if (fechaEvento.isSameOrBefore(fechaActual)){
+                        eventosList = `
+                            ${eventosList}
+                            <li class="d-grid gap-2">
+                                <a type="button" aria-disabled class="btn btn-outline-danger btn-lg disabled">${evento.titulo} - ${fechaEventoFormateada} - No Disponible</a>
+                            </li>
+                        `
+                    } else {
+                        eventosList = `
+                            ${eventosList}
+                            <li class="d-grid gap-2">
+                                <a type="button" class="btn btn-outline-danger btn-lg" href="javascript:registrarEvento(${evento.id})">${evento.titulo} - ${fechaEventoFormateada}</a>
+                            </li>
+                        `
+                    }
+                    
                 })
                 eventos.innerHTML = `${eventosList}</ul>`
             } else {
@@ -21,3 +34,8 @@ window.addEventListener('load', function() {
             }
         });
 })
+
+function registrarEvento(id) {
+    window.localStorage.idEvento = id
+    window.location.href = '/registrarevento.html'
+}

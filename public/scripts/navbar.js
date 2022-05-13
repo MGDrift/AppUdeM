@@ -1,6 +1,4 @@
-let queryString = window.location.search;
-let urlParams = new URLSearchParams(queryString);
-let cedula = urlParams.get('cedula');
+let cedula = window.localStorage.cedula;
 
 window.addEventListener('load', function() {
     if (cedula) {
@@ -15,29 +13,17 @@ window.addEventListener('load', function() {
 });
 
 function home() {
-    let url = '/'
-    if (cedula)
-        url = `${url}?cedula=${cedula}`
-    window.location.href = url
+    window.location.href = '/'
 }
 
 function iniciar() {
-    let url = '/iniciar.html'
-    if (cedula)
-        url = `${url}?cedula=${cedula}`
-    window.location.href = url
+    window.location.href = '/iniciar.html'
 }
 
 function misEventos() {
-    let url = '/miseventos.html'
-    if (cedula)
-        url = `${url}?cedula=${cedula}`
-    window.location.href = url
+    window.location.href = '/miseventos.html'
 }
 
 function crearEvento() {
-    let url = '/crearevento.html'
-    if (cedula)
-        url = `${url}?cedula=${cedula}`
-    window.location.href = url
+    window.location.href = '/crearevento.html'
 }

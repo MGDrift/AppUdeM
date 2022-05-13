@@ -8,7 +8,8 @@ bSubmit.addEventListener('click', () => {
         fetch(`http://localhost:3300/usuarios/${cedula}`)
             .then(response => {
                 if (response.status === 200) {
-                    window.location.href = `/?cedula=${cedula}`
+                    window.localStorage.cedula = cedula
+                    window.location.href = `/`
                 } else {
                     mensaje.innerHTML = 'Esta cédula no existe. Regístrate!!!'
                 }
@@ -19,12 +20,5 @@ bSubmit.addEventListener('click', () => {
 })
 
 bRegistrar.addEventListener('click', () => {
-    let queryString = window.location.search;
-    let urlParams = new URLSearchParams(queryString);
-    let cedula = urlParams.get('cedula');
-    let url = '/registrar.html'
-    if (cedula) {
-        url = `${url}?cedula=${cedula}`
-    }
-    window.location.href = url
+    window.location.href = '/registrar.html'
 })
