@@ -8,7 +8,7 @@ window.addEventListener('load', function() {  //carga Crear evento
             if (data.length > 0) {
                 let fechaActual = moment()
                 data.filter((evento) => moment(evento.fecha).month() == fechaActual.month())
-                .forEach(function(evento) {
+                .forEach((evento) => {
                     let fechaEvento = moment(evento.fecha)
                     let fechaEventoFormateada = fechaEvento.format("DD/MM/YYYY HH:mm")
                     if (fechaEvento.isSameOrBefore(fechaActual)){ //verifica el mes para saber si deshabilita el evento
@@ -18,7 +18,7 @@ window.addEventListener('load', function() {  //carga Crear evento
                                 <a type="button" aria-disabled class="btn btn-outline-danger btn-lg disabled">${evento.titulo} - ${fechaEventoFormateada} - No Disponible</a>
                             </li>
                         `
-                    } else { // se supone que muestra el evento??
+                    } else { // deja el evento habilitado, con la posibilidad de guardar el metodo
                         eventosList = `
                             ${eventosList}
                             <li class="d-grid gap-2">  
