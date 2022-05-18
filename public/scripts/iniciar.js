@@ -19,6 +19,6 @@ bSubmit.addEventListener('click', () => {
     }
 })
 
-bRegistrar.addEventListener('click', () => { // muestra lo visual??
+bRegistrar.addEventListener('click', () => { 
     window.location.href = '/registrar.html'
 })

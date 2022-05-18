@@ -51,7 +51,7 @@ window.addEventListener('load', function() {
     }
 })
 
-function registrarEvento(id) { // no je
+function registrarEvento(id) { 
     window.localStorage.idEvento = id
     window.location.href = '/registrarevento.html'
 }
