@@ -23,7 +23,7 @@ window.addEventListener('load', function() {
                     <br/>
                     <div>
                         <a type="button" class="btn btn-outline-primary btn-lg" href="javascript:registrar(${id}, ${cedula}, ${estaRegistrado})">${
-                            estaRegistrado ? 'Quitar Registro' : 'Registrar'}</a>
+                            estaRegistrado ? 'Quitar Registro' : 'Registrar'}</a> // wtf???
                         <a type="button" class="btn btn-outline-danger btn-lg" href="/">Cancelar</a>
                     </div>
                     <br/>

@@ -2,12 +2,12 @@ const eventos = document.querySelector('#eventos')
 
 window.addEventListener('load', function() {
     let cedula = window.localStorage.cedula
-    if (cedula) {
+    if (cedula) {  // pregunta si ya hay alguien registrado
         let eventosList = '<ul class="d-grid gap-2">'
         fetch('http://localhost:3300/eventos')
         .then(response => response.json())
         .then(data => {
-            if (data.length > 0) {
+            if (data.length > 0) {//verifica si esta registrado a algun evento
                 fetch('http://localhost:3300/eventosusuarios/' + cedula)
                 .then(response => response.json())
                 .then(body => {
@@ -15,11 +15,11 @@ window.addEventListener('load', function() {
                     let fechaActual = moment()
                     data = data.filter(evento => misEventos.includes(evento.id))
                     .filter((evento) => moment(evento.fecha).month() == fechaActual.month())
-                    if (data.length > 0) {
+                    if (data.length > 0) {  // veridca si hay algún evento
                         data.forEach(function(evento) {
                             let fechaEvento = moment(evento.fecha)
                             let fechaEventoFormateada = fechaEvento.format("DD/MM/YYYY HH:mm")
-                            if (fechaEvento.isSameOrBefore(fechaActual)){
+                            if (fechaEvento.isSameOrBefore(fechaActual)){ //Verfica la disponiblidad del evento
                                 eventosList = `
                                     ${eventosList}
                                     <li class="d-grid gap-2">
@@ -51,7 +51,7 @@ window.addEventListener('load', function() {
     }
 })
 
-function registrarEvento(id) {
+function registrarEvento(id) { // no je
     window.localStorage.idEvento = id
     window.location.href = '/registrarevento.html'
 }

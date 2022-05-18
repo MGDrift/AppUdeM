@@ -1,7 +1,7 @@
 let cedula = window.localStorage.cedula;
 
-window.addEventListener('load', function() {
-    if (cedula) {
+window.addEventListener('load', function() {//carga la pagina
+    if (cedula) {// muestra el nombre en la barra de navegacion 
         let nombreP = document.querySelector('#nombreP')
         fetch(`http://localhost:3300/usuarios/${cedula}`)
             .then(response => response.json())

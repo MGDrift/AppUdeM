@@ -5,7 +5,7 @@ bSubmit.addEventListener('click', () => {
     let cedula = document.querySelector('#cedula').value
     let mensaje = document.querySelector('#mensaje')
     if (cedula) {
-        fetch(`http://localhost:3300/usuarios/${cedula}`)
+        fetch(`http://localhost:3300/usuarios/${cedula}`) // si existe, la trae de la base de datos
             .then(response => {
                 if (response.status === 200) {
                     window.localStorage.cedula = cedula
@@ -19,6 +19,6 @@ bSubmit.addEventListener('click', () => {
     }
 })
 
-bRegistrar.addEventListener('click', () => {
+bRegistrar.addEventListener('click', () => { // muestra lo visual??
     window.location.href = '/registrar.html'
 })

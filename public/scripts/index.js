@@ -1,6 +1,6 @@
 const eventos = document.querySelector('#eventos')
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function() {  //carga Crear evento
     let eventosList = '<ul class="d-grid gap-2">'
     fetch('http://localhost:3300/eventos')
         .then(response => response.json())
@@ -11,17 +11,17 @@ window.addEventListener('load', function() {
                 .forEach(function(evento) {
                     let fechaEvento = moment(evento.fecha)
                     let fechaEventoFormateada = fechaEvento.format("DD/MM/YYYY HH:mm")
-                    if (fechaEvento.isSameOrBefore(fechaActual)){
+                    if (fechaEvento.isSameOrBefore(fechaActual)){ //verifica el mes para saber si deshabilita el evento
                         eventosList = `
                             ${eventosList}
                             <li class="d-grid gap-2">
                                 <a type="button" aria-disabled class="btn btn-outline-danger btn-lg disabled">${evento.titulo} - ${fechaEventoFormateada} - No Disponible</a>
                             </li>
                         `
-                    } else {
+                    } else { // se supone que muestra el evento??
                         eventosList = `
                             ${eventosList}
-                            <li class="d-grid gap-2">
+                            <li class="d-grid gap-2">  
                                 <a type="button" class="btn btn-outline-danger btn-lg" href="javascript:registrarEvento(${evento.id})">${evento.titulo} - ${fechaEventoFormateada}</a>
                             </li>
                         `
@@ -35,7 +35,7 @@ window.addEventListener('load', function() {
         });
 })
 
-function registrarEvento(id) {
+function registrarEvento(id) { // direcion url de crear evento
     window.localStorage.idEvento = id
     window.location.href = '/registrarevento.html'
 }
