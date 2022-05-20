@@ -22,12 +22,14 @@ window.addEventListener('load', function() {
                     <p>${evento.descripcion}</p>
                     <br/>
                     <div>
-                        <a type="button" class="btn btn-outline-primary btn-lg" href="javascript:registrar(${id}, ${cedula}, ${estaRegistrado})">${
+                        <a id="registrarBoton" type="button" class="btn btn-outline-primary btn-lg" href="javascript:registrar(${id}, ${cedula}, ${estaRegistrado})">${
                             estaRegistrado ? 'Quitar Registro' : 'Registrar'}</a>
                         <a type="button" class="btn btn-outline-danger btn-lg" href="/">Cancelar</a>
                     </div>
                     <br/>
                     <div id="mensaje"></div>
+                    <br/>
+                    <div id="contenedorQR" style="display: flex; justify-content: center;"></div>
                 `
             })
         })
@@ -57,7 +59,16 @@ function registrar(idEvento, cedula, estaRegistrado) {
                     'Content-Type': 'application/json'
                 }
             })
-            .then(res => window.location.href = "/miseventos.html")
+            .then(res => {
+                const contenedorQR = document.getElementById('contenedorQR');
+                const mensaje = document.getElementById('mensaje');
+                const QR = new QRCode(contenedorQR);
+                QR.makeCode("Bienvenido!!");
+                mensaje.innerHTML = '<h2>Registrado exitosamente :D</h2>'
+            })
             .catch(err => console.log(err))
     }
+    const registrarBoton = document.querySelector('#registrarBoton')
+    registrarBoton.outerHTML = `<a type="button" class="btn btn-outline-primary btn-lg" href="javascript:registrar(${idEvento}, ${cedula}, ${!estaRegistrado})">${
+        !estaRegistrado ? 'Quitar Registro' : 'Registrar'}</a>`
 }
