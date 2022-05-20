@@ -63,7 +63,7 @@ function registrar(idEvento, cedula, estaRegistrado) {
                 const contenedorQR = document.getElementById('contenedorQR');
                 const mensaje = document.getElementById('mensaje');
                 const QR = new QRCode(contenedorQR);
-                QR.makeCode("Bienvenido!!");
+                QR.makeCode("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley");
                 mensaje.innerHTML = '<h2>Registrado exitosamente :D</h2>'
             })
             .catch(err => console.log(err))
